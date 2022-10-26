@@ -1,0 +1,34 @@
+$theme-colors: (
+  "primary": $color-primary,
+  "danger": $color-danger,
+  "success": $color-success,
+  "warning": $color-warning,
+);
+
+/* Certain variables are required in JS directly */
+:root {
+  --color-fg: #{$color-fg};
+  --color-bg: #{$color-bg};
+  --border-color: #{$border-color};
+  --psql-background: #{$psql-background};
+  --psql-foreground: #{$psql-foreground};
+  --psql-cursor: #{$psql-cursor};
+  --psql-cursorAccent: #{$psql-cursorAccent};
+  --psql-selection: #{$psql-selection};
+}
+
+@import "bootstrap/scss/bootstrap";
+@import 'webcabin.pgadmin';
+@import 'bootstrap.overrides';
+@import 'tree.overrides';
+@import 'select2.overrides';
+@import 'codemirror.overrides';
+@import 'alert';
+@import 'pgadmin.grid';
+@import 'pgadmin.style';
+@import 'bootstrap4-toggle.overrides';
+@import 'jsoneditor.overrides';
+@import 'pgadmin4-tree.overrides';
+@import 'pgadmin4-tree/src/css/styles';
+@import 'rc-dock/dist/rc-dock.css';
+@import '@szhsin/react-menu/dist/index.css';

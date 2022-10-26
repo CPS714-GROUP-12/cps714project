@@ -1,0 +1,29 @@
+###############################################################################
+#
+# IMPORTANT:
+#
+# If runtime or build time dependencies are changed in this file, the committer
+# *must* ensure the DEB and RPM package maintainers are informed as soon as
+# possible.
+#
+###############################################################################
+
+#####################################
+# Include all the common dependencies
+#####################################
+-r ../../requirements.txt
+
+###########################################
+# Add all the development dependencies here
+###########################################
+extras==1.0.0
+fixtures==3.0.0
+linecache2==1.0.0
+pbr==3.1.1
+pycodestyle>=2.5.0
+python-mimeparse==1.6.0
+testscenarios==0.5.0
+testtools==2.5.0
+traceback2==1.4.0
+selenium==4.0.0a6
+coverage==5.0.1

@@ -1,0 +1,216 @@
+/////////////////////////////////////////////////////////////
+//
+// pgAdmin 4 - PostgreSQL Tools
+//
+// Copyright (C) 2013 - 2022, The pgAdmin Development Team
+// This software is released under the PostgreSQL Licence
+//
+//////////////////////////////////////////////////////////////
+import { getNodeListByName, getNodeAjaxOptions } from '../../../../../../../../static/js/node_ajax';
+import TriggerSchema from './trigger.ui';
+import Notify from '../../../../../../../../../static/js/helpers/Notifier';
+import _ from 'lodash';
+
+define('pgadmin.node.trigger', [
+  'sources/gettext', 'sources/url_for', 'jquery',
+  'sources/pgadmin', 'pgadmin.browser',
+  'pgadmin.node.schema.dir/schema_child_tree_node',
+  'pgadmin.browser.collection',
+], function(
+  gettext, url_for, $, pgAdmin, pgBrowser, SchemaChildTreeNode
+) {
+
+  if (!pgBrowser.Nodes['coll-trigger']) {
+    pgAdmin.Browser.Nodes['coll-trigger'] =
+      pgAdmin.Browser.Collection.extend({
+        node: 'trigger',
+        label: gettext('Triggers'),
+        type: 'coll-trigger',
+        columns: ['name', 'description'],
+        canDrop: SchemaChildTreeNode.isTreeItemOfChildOfSchema,
+        canDropCascade: SchemaChildTreeNode.isTreeItemOfChildOfSchema,
+      });
+  }
+
+  if (!pgBrowser.Nodes['trigger']) {
+    pgAdmin.Browser.Nodes['trigger'] = pgBrowser.Node.extend({
+      parent_type: ['table', 'view', 'partition'],
+      collection_type: ['coll-table', 'coll-view'],
+      type: 'trigger',
+      label: gettext('Trigger'),
+      hasSQL:  true,
+      hasDepends: true,
+      width: pgBrowser.stdW.sm + 'px',
+      sqlAlterHelp: 'sql-altertrigger.html',
+      sqlCreateHelp: 'sql-createtrigger.html',
+      dialogHelp: url_for('help.static', {'filename': 'trigger_dialog.html'}),
+      url_jump_after_node: 'schema',
+      Init: function() {
+        /* Avoid mulitple registration of menus */
+        if (this.initialized)
+          return;
+
+        this.initialized = true;
+
+        pgBrowser.add_menus([{
+          name: 'create_trigger_on_coll', node: 'coll-trigger', module: this,
+          applies: ['object', 'context'], callback: 'show_obj_properties',
+          category: 'create', priority: 4, label: gettext('Trigger...'),
+          icon: 'wcTabIcon icon-trigger', data: {action: 'create', check: true},
+          enable: 'canCreate',
+        },{
+          name: 'create_trigger', node: 'trigger', module: this,
+          applies: ['object', 'context'], callback: 'show_obj_properties',
+          category: 'create', priority: 4, label: gettext('Trigger...'),
+          icon: 'wcTabIcon icon-trigger', data: {action: 'create', check: true},
+          enable: 'canCreate',
+        },{
+          name: 'create_trigger_onTable', node: 'table', module: this,
+          applies: ['object', 'context'], callback: 'show_obj_properties',
+          category: 'create', priority: 4, label: gettext('Trigger...'),
+          icon: 'wcTabIcon icon-trigger', data: {action: 'create', check: true},
+          enable: 'canCreate',
+        },{
+          name: 'create_trigger_onPartition', node: 'partition', module: this,
+          applies: ['object', 'context'], callback: 'show_obj_properties',
+          category: 'create', priority: 4, label: gettext('Trigger...'),
+          icon: 'wcTabIcon icon-trigger', data: {action: 'create', check: true},
+          enable: 'canCreate',
+        },{
+          name: 'enable_trigger', node: 'trigger', module: this,
+          applies: ['object', 'context'], callback: 'enable_trigger',
+          category: 'connect', priority: 3, label: gettext('Enable'),
+          icon: 'fa fa-check', enable : 'canCreate_with_trigger_enable',
+        },{
+          name: 'disable_trigger', node: 'trigger', module: this,
+          applies: ['object', 'context'], callback: 'disable_trigger',
+          category: 'drop', priority: 3, label: gettext('Disable'),
+          icon: 'fa fa-times', enable : 'canCreate_with_trigger_disable',
+        },{
+          name: 'create_trigger_onView', node: 'view', module: this,
+          applies: ['object', 'context'], callback: 'show_obj_properties',
+          category: 'create', priority: 4, label: gettext('Trigger...'),
+          icon: 'wcTabIcon icon-trigger', data: {action: 'create', check: true},
+          enable: 'canCreate',
+        },
+        ]);
+      },
+      callbacks: {
+        /* Enable trigger */
+        enable_trigger: function(args) {
+          let input = args || {},
+            obj = this,
+            t = pgBrowser.tree,
+            i = input.item || t.selected(),
+            d = i  ? t.itemData(i) : undefined;
+
+          if (!d)
+            return false;
+
+          let data = d;
+          $.ajax({
+            url: obj.generate_url(i, 'enable' , d, true),
+            type:'PUT',
+            data: {'is_enable_trigger' : 'O'},
+            dataType: 'json',
+          })
+            .done(function(res) {
+              if (res.success == 1) {
+                Notify.success(res.info);
+                t.removeIcon(i);
+                data.icon = 'icon-trigger';
+                t.addIcon(i, {icon: data.icon});
+                t.unload(i);
+                t.setInode(false);
+                t.deselect(i);
+                // Fetch updated data from server
+                setTimeout(function() {
+                  t.select(i);
+                }, 10);
+              }
+            })
+            .fail(function(xhr, status, error) {
+              Notify.pgRespErrorNotify(xhr, error);
+              t.unload(i);
+            });
+        },
+        /* Disable trigger */
+        disable_trigger: function(args) {
+          let input = args || {},
+            obj = this,
+            t = pgBrowser.tree,
+            i = input.item || t.selected(),
+            d = i  ? t.itemData(i) : undefined;
+
+          if (!d)
+            return false;
+
+          let data = d;
+          $.ajax({
+            url: obj.generate_url(i, 'enable' , d, true),
+            type:'PUT',
+            data: {'is_enable_trigger' : 'D'},
+            dataType: 'json',
+          })
+            .done(function(res) {
+              if (res.success == 1) {
+                Notify.success(res.info);
+                t.removeIcon(i);
+                data.icon = 'icon-trigger-bad';
+                t.addIcon(i, {icon: data.icon});
+                t.unload(i);
+                t.setInode(false);
+                t.deselect(i);
+                // Fetch updated data from server
+                setTimeout(function() {
+                  t.select(i);
+                }, 10);
+              }
+            })
+            .fail(function(xhr, status, error) {
+              Notify.pgRespErrorNotify(xhr, error, gettext('Disable trigger failed'));
+              t.unload(i);
+            });
+        },
+      },
+      canDrop: SchemaChildTreeNode.isTreeItemOfChildOfSchema,
+      canDropCascade: SchemaChildTreeNode.isTreeItemOfChildOfSchema,
+      getSchema: function(treeNodeInfo, itemNodeData) {
+        return new TriggerSchema(
+          {
+            triggerFunction: ()=>getNodeAjaxOptions('get_triggerfunctions', this, treeNodeInfo, itemNodeData, {cacheLevel: 'trigger_function', jumpAfterNode: 'schema'}, (data) => {
+              return _.reject(data, function(option) {
+                return option.label == '';
+              });
+            }),
+            columns: ()=> getNodeListByName('column', treeNodeInfo, itemNodeData, { cacheLevel: 'column'}),
+            nodeInfo: treeNodeInfo
+          },
+        );
+      },
+      canCreate: SchemaChildTreeNode.isTreeItemOfChildOfSchema,
+      // Check to whether trigger is disable ?
+      canCreate_with_trigger_enable: function(itemData, item, data) {
+        let treeData = pgBrowser.tree.getTreeNodeHierarchy(item);
+        if ('view' in treeData) {
+          return false;
+        }
+
+        return itemData.icon === 'icon-trigger-bad' &&
+          this.canCreate.apply(this, [itemData, item, data]);
+      },
+      // Check to whether trigger is enable ?
+      canCreate_with_trigger_disable: function(itemData, item, data) {
+        let treeData = pgBrowser.tree.getTreeNodeHierarchy(item);
+        if ('view' in treeData) {
+          return false;
+        }
+
+        return itemData.icon === 'icon-trigger' &&
+          this.canCreate.apply(this, [itemData, item, data]);
+      },
+    });
+  }
+
+  return pgBrowser.Nodes['trigger'];
+});

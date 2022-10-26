@@ -1,0 +1,3 @@
+[console_scripts]
+pgadmin4 = pgadmin4.pgAdmin4:main
+
