@@ -11,7 +11,7 @@ if ENV == 'dev':
     api.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Post9587#@localhost/tourist'
 else:
     api.debug = False
-    api.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://rnmlvrfnxxiufm:be90ad41a5528fad752e4c62b20c1e25c4358bd856f0d593504eeed5527aa7e1@ec2-54-163-34-107.compute-1.amazonaws.com:5432/dfct33lim8vqv'
+    api.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://rnmlvrfnxxiufm:be90ad41a5528fad752e4c62b20c1e25c4358bd856f0d593504eeed5527aa7e1@ec2-54-163-34-107.compute-1.amazonaws.com:5432/dfct33lim8vqv'
 
 api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
