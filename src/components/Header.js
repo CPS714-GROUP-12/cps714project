@@ -7,6 +7,7 @@ function Header(props) {
     axios({
       method: "POST",
       url:"/logout",
+      data:{}
     })
     .then((response) => {
        props.token()
