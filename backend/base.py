@@ -4,8 +4,10 @@ from flask.helpers import send_from_directory
 from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required, \
     JWTManager
+from flask_cors import CORS
 
 api = Flask(__name__, static_folder="flask_react/build", static_url_path='')
+CORS(api)
 
 ENV = 'prod'
 if ENV == 'dev':
