@@ -6,7 +6,7 @@ from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, u
 
 api = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 if ENV == 'dev':
     api.debug = True
     api.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Post9587#@localhost/tourist'

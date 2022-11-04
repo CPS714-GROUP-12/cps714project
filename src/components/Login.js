@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
+import './login.css'
 
 function Login(props) {
 
@@ -54,25 +55,35 @@ function Login(props) {
 
     return (
       <div>
-        <h1>Login</h1>
-          <form className="login">
-            <input onChange={handleChange} 
-                  type="email"
-                  text={loginForm.email} 
-                  name="email" 
-                  placeholder="Email" 
-                  value={loginForm.email} />
-            <input onChange={handleChange} 
-                  type="password"
-                  text={loginForm.password} 
-                  name="password" 
-                  placeholder="Password" 
-                  value={loginForm.password} />
+      <div className="login-box">
+      <h2>Login</h2>
+      <form>
+        <div className="user-box">
+          <input onChange={handleChange}
+                 type="email" name="email"
+                 text={loginForm.email}
+                 value={loginForm.email} />
+          <label>Username</label>
+        </div>
+        <div className="user-box">
+          <input onChange={handleChange}
+                 type="password" name="password"
+                 text={loginForm.password}
+                 value={loginForm.password}
+                 />
+          <label>Password</label>
+        </div>
+        <a href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <button onClick={logMeIn}>Login</button>
+        </a>
+      </form>
+      <p id="signup-link"> Don't have an account? <Link to='/signup'>Sign up here.</Link></p>
+    </div>
 
-         <button onClick={logMeIn}>Login</button>
-
-        </form>
-        <p>Don't have an account? </p><Link to='/signup'>Sign up here.</Link>
       </div>
     );
 }
