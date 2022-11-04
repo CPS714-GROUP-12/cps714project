@@ -4,7 +4,7 @@ from flask.helpers import send_from_directory
 from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required, \
     JWTManager
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 api = Flask(__name__, static_folder="flask_react/build", static_url_path='')
 CORS(api)
@@ -47,6 +47,7 @@ def refresh_expiring_jwts(response):
 
 
 @api.route('/', methods=["GET", "POST"])
+@cross_origin()
 def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
@@ -63,10 +64,12 @@ def create_token():
     return response
 
 @api.route('/', methods=["GET", "POST"])
+@cross_origin()
 def serve():
     return send_from_directory(api.static_folder, 'index.html')
 
 @api.route("/logout", methods=["GET", "POST"])
+@cross_origin()
 def logout():
     response = jsonify({"msg": "logout successful"})
     unset_jwt_cookies(response)
@@ -74,6 +77,7 @@ def logout():
 
 
 @api.route("/signup", methods=["GET", "POST"])
+@cross_origin()
 def signup():
     username = request.json.get("username", None)
     email = request.json.get("email", None)
