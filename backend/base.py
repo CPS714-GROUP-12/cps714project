@@ -1,10 +1,11 @@
 import json
 from flask import Flask, request, jsonify, render_template
+from flask.helpers import send_from_directory
 from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required, \
     JWTManager
 
-api = Flask(__name__)
+api = Flask(__name__, static_folder="flask_react/build", static_url_path='')
 
 ENV = 'prod'
 if ENV == 'dev':
@@ -59,6 +60,9 @@ def create_token():
     response = {"access_token": access_token}
     return response
 
+@api.route('/', methods=["GET", "POST"])
+def serve():
+    return send_from_directory(api.static_folder, 'index.html')
 
 @api.route("/logout", methods=["GET", "POST"])
 def logout():
