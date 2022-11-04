@@ -18,7 +18,14 @@ else:
 
 api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-from models import Users, db
+from models import LanguageCodeName, PhraseCodeName, Phrases, Restaurants, Users, RestaurantReviews, RestaurantReviewsImages, db
+from flask_sqlalchemy import SQLAlchemy
+
+
+with api.app_context():            
+    db.init_app(api)
+    db.create_all()
+    #db.session.add(Users("username", "email@email.mail", "password", "password", "first_name", "last_name"))
 
 api.config["JWT_SECRET_KEY"] = "TOURIST_APP"
 api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
