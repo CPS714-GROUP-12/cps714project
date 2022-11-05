@@ -14,7 +14,7 @@ if ENV == 'dev':
 else:
     api.debug = False
     api.config[
-        'SQLALCHEMY_DATABASE_URI'] = 'postgres://chester:f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE@dpg-cdirkg6n6mpngrt4589g-a/vacatio'
+        'SQLALCHEMY_DATABASE_URI'] = 'postgresql://chester:f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE@dpg-cdirkg6n6mpngrt4589g-a/vacatio'
 
 api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
