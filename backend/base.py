@@ -14,18 +14,27 @@ if ENV == 'dev':
 else:
     api.debug = False
     api.config[
-        'SQLALCHEMY_DATABASE_URI'] = 'postgresql://chester:f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE@dpg-cdirkg6n6mpngrt4589g-a/vacatio'
-
+        'SQLALCHEMY_DATABASE_URI'] = 'postgres://chester:f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE@dpg-cdirkg6n6mpngrt4589g-a.oregon-postgres.render.com/vacatio'
+    #     internal_uri = "postgresql://chester:f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE@dpg-cdirkg6n6mpngrt4589g-a/vacatio"
+    
+    #       connecting render db to pgadmin4:
+    #       go to dashboard tab, add new server
+    #       name it whatever you want in general tab
+    #       go to connection tab:
+    #           hostname:               dpg-cdirkg6n6mpngrt4589g-a.oregon-postgres.render.com
+    #           maintanace database:    vacatio
+    #           username:               chester (will change later to cps714)
+    #           password:               f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE
+    #       save 
 api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 from models import LanguageCodeName, PhraseCodeName, Phrases, Restaurants, Users, RestaurantReviews, RestaurantReviewsImages, db
 from flask_sqlalchemy import SQLAlchemy
-
-
-with api.app_context():            
-    db.init_app(api)
-    db.create_all()
-    #db.session.add(Users("username", "email@email.mail", "password", "password", "first_name", "last_name"))
+if ENV == "dev":
+    with api.app_context():            
+        db.init_app(api)
+        db.create_all()
+        #db.session.add(Users("username", "email@email.mail", "password", "password", "first_name", "last_name"))
 
 api.config["JWT_SECRET_KEY"] = "TOURIST_APP"
 api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
