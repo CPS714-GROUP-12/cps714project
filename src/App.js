@@ -1,11 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Login from './components/Login'
-import Signup from './components/Signup'
-import Profile from './components/Profile'
-import Header from './components/Header'
-import useToken from './components/useToken'
-import Navbar from './components/Navbar'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Profile from './pages/Profile'
+import Homepage from './pages/Homepage'
+import Header from './pages/components/Header'
+import useToken from './pages/useToken'
+import Navbar from './pages/components/Navbar'
 import './App.css'
+import { ViewAgenda } from '@mui/icons-material'
+import ViewProfile from './pages/ViewProfile';
+import Restaurant from './pages/Restaurant';
 
 function App() {
   const { token, removeToken, setToken } = useToken();
@@ -17,6 +21,10 @@ function App() {
               <Route path="/" element={<Login setToken={setToken}/>}></Route>
               <Route path="/profile" element={<Profile token={token} setToken={setToken}/>}></Route>
               <Route path="/signup"  element={<Signup />}></Route>
+              <Route path="/homepage"  element={<Homepage />}></Route>
+              <Route path="/userprofile"  element={<ViewProfile />}></Route>
+              <Route path="/restaurant"  element={<Restaurant />}></Route>
+
             </Routes>
       </div>
     </BrowserRouter>

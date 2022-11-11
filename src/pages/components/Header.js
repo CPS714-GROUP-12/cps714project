@@ -1,4 +1,4 @@
-import logo from '../logo.svg'
+import logo from './logo.svg';
 import axios from "axios";
 
 function Header(props) {
@@ -7,7 +7,6 @@ function Header(props) {
     axios({
       method: "POST",
       url:"/logout",
-      data:{}
     })
     .then((response) => {
        props.token()
