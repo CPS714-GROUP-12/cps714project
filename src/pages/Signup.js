@@ -63,7 +63,7 @@ function Signup(props) {
 
         <div className="user-box">
           <input onChange={handleChange}
-                 type="first_name" name="first_name"
+                 type="text" name="first_name"
                  text={signUpForm.first_name}
                  value={signUpForm.first_name}
                  required="" />
@@ -73,7 +73,7 @@ function Signup(props) {
 
         <div className="user-box">
           <input onChange={handleChange}
-                 type="last_name" name="last_name"
+                 type="text" name="last_name"
                  text={signUpForm.last_name}
                  value={signUpForm.last_name}
                  required="" />
@@ -94,7 +94,7 @@ function Signup(props) {
 
         <div className="user-box">
           <input onChange={handleChange}
-                  type="username"
+                  type="text"
                   text={signUpForm.username}
                   name="username"
                   value={signUpForm.username}
@@ -116,7 +116,7 @@ function Signup(props) {
 
         <div className="user-box">
           <input onChange={handleChange}
-                  type="verify_password"
+                  type="password"
                   text={signUpForm.verify_password}
                   name="verify_password"
                   value={signUpForm.verify_password}
