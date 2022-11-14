@@ -1,24 +1,11 @@
 //edit user profile 
 
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
-import '../App.css';
+import '../styles/App.css';
 import * as React from 'react';
 //import { AppBar } from '@mui/material';
-import AppBar from './components/AppBar';
-import { experimentalStyled as styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import { Typography } from '@mui/material';
-import ExpandCard from './components/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { CardActionArea } from '@mui/material';
-import Card from '@mui/material/Card';
-import Typist from "react-typist-component";
-import TextField from '@mui/material/TextField';
+import AppBar from '../components/AppBar';
 
 export default function Homepage(props) {
 

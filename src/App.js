@@ -3,10 +3,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
 import Homepage from './pages/Homepage'
-import Header from './pages/components/Header'
 import useToken from './pages/useToken'
-import Navbar from './pages/components/Navbar'
-import './App.css'
+import Navbar from './components/Navbar'
+import './styles/App.css'
 import { ViewAgenda } from '@mui/icons-material'
 import ViewProfile from './pages/ViewProfile';
 import Restaurant from './pages/Restaurant';

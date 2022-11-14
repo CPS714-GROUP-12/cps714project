@@ -14,10 +14,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import RestaurantCard from './components/Card';
-import AppBar from "./components/AppBar";
+import RestaurantCard from '../components/Card';
+import AppBar from "../components/AppBar";
 import { CardActionArea } from '@mui/material';
-import '../App.css';
+import '../styles/App.css';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -55,7 +55,7 @@ export default function Restaurant() {
                 <CardMedia
                   component="img"
                   height="140"
-                  image={require("./toronto.jpg")}
+                  image={require("../assets/toronto.jpg")}
                   alt="toronto map"
                 />
                 <CardContent>

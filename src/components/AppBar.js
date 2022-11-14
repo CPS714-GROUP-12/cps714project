@@ -15,8 +15,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import Typist from "react-typist-component";
+import Avatar from '@mui/material/Avatar';
+import logo from "../assets/vlogo.png";
+import "../styles/App.css";
 
-import "../../App.css";
 const drawerWidth = 240;
 const navItems = ['Home', 'Edit Profile', 'Contact Us'];
 
@@ -28,10 +30,8 @@ function DrawerAppBar(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  // improve repetitve code F.R. 
-
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', color: '#fff'}} id="appbar">
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', color: '#48CFAE'}} id="appbar">
       <Typography variant="h6" sx={{ my: 2 }} >
         Vacatio
       </Typography>
@@ -39,7 +39,7 @@ function DrawerAppBar(props) {
       <List id="appbar">
       <a href="/homepage">
           <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: 'center', color: '#fff' }}>
+            <ListItemButton sx={{ textAlign: 'center', color: '#FFAB2D' }}>
               <ListItemText primary={navItems[0]} />
             </ListItemButton>
           </ListItem>
@@ -47,14 +47,14 @@ function DrawerAppBar(props) {
 
           <a href="/userprofile">
           <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: 'center', color: '#fff'}}>
+            <ListItemButton sx={{ textAlign: 'center', color: '#FFAB2D'}}>
               <ListItemText primary={navItems[1]} />
             </ListItemButton>
           </ListItem>
           </a>
 
           <ListItem disablePadding>
-            <ListItemButton sx={{ textAlign: 'center', color: '#fff' }}>
+            <ListItemButton sx={{ textAlign: 'center', color: '#FFAB2D' }}>
               <ListItemText primary={navItems[2]} />
             </ListItemButton>
           </ListItem>
@@ -66,8 +66,16 @@ function DrawerAppBar(props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar component="nav" id="appbar"  >
+      <AppBar component="nav" id="appbar" elevation={0} >
         <Toolbar>
+        <Link href="/">
+          <Box
+            component="img"
+            sx={{ height: 84 }}
+            alt="Logo"
+            src={logo}
+          />
+        </Link>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -83,7 +91,7 @@ function DrawerAppBar(props) {
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', textAlign: 'left' } }}
           >
             <a href="/homepage">
-              <Button id="btn"  sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', textAlign: 'left' }, color: '#fff' }}>
+              <Button id="btn"  sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', textAlign: 'left' }, color: '#FFAB2D' }}>
                 Vacatio
               </Button>
              </a>
@@ -91,19 +99,19 @@ function DrawerAppBar(props) {
 
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               <a href="/homepage">
-              <Button id="appbar-hover" sx={{ color: '#fff' }}>
+              <Button id="appbar-hover" sx={{ color: '#FFAB2D' }}>
                 {navItems[0]}
               </Button>
               </a>
 
               <a href="/userprofile">
-              <Button id="appbar-hover" sx={{ color: '#fff' }}>
+              <Button id="appbar-hover" sx={{ color: '#FFAB2D' }}>
                 {navItems[1]}
               </Button>
               </a>
 
               <a href="/contact">
-              <Button id="appbar-hover" sx={{ color: '#fff' }}>
+              <Button id="appbar-hover" sx={{ color: '#FFAB2D'}}>
                 {navItems[2]}
               </Button>
               </a>

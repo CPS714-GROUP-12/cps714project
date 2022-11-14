@@ -1,23 +1,33 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
-import '../App.css';
+import '../styles/App.css';
 import * as React from 'react';
-//import { AppBar } from '@mui/material';
-import AppBar from './components/AppBar';
+import AppBar from '../components/AppBar';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
-import ExpandCard from './components/Card';
+import ExpandCard from '../components/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Card from '@mui/material/Card';
 import Typist from "react-typist-component";
-
-
+import gpsLogo from '../assets/gps1.png';
+import playLogo from '../assets/play.png';
+import food from '../assets/food.png';
+import language from '../assets/language.png';
+import experience from '../assets/experience.png';
+// import ChatFeed from './components/ChatFeed';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import LiveFeed from '../components/Feed';
+ 
 export default function Homepage(props) {
 
   //code copied from Profile.js. 
@@ -62,28 +72,31 @@ export default function Homepage(props) {
         </div>
       <div class="row">
         <div class="column">
+          <div class="card"> 
           <a href="/restaurant"> 
-                <ExpandCard>
+          <img src={food} alt="Food" class="responsive"/>
                    <h4> Restaurant Recommendations</h4> 
-                   <CardContent> <Typography> Test </Typography></CardContent> 
-                   </ExpandCard>
-            </a>
-          </div>      
+              </a>
+          </div>  
+          </div>    
 
           <div class="column">
             <div class="card">
+            <img src={playLogo} alt="PlayLogo" class="responsive"/>
               <h4> Entertainment Near You</h4>
             </div>
           </div>
 
           <div class="column">
-            <div class="card"> <h4> Location </h4>  
+            <div class="card"> 
+            {/* <img src={gpsLogo} alt="MyGps" class="responsive"/> */}
+            <h4> Location </h4>  
             <Card sx={{ maxWidth: 450 }}>
               <CardActionArea>
                 <CardMedia
                   component="img"
                   height="140"
-                  image={require("./toronto.jpg")}
+                  image={require("../assets/toronto.jpg")}
                   alt="toronto map"
                 />
                 <CardContent>
@@ -96,19 +109,27 @@ export default function Homepage(props) {
             </div>        
           </div>
 
+        
           <div class="column">
-            <div class="card">  <h4> Other </h4>
-
+            <div class="card" >  
+            <h4> Chat Timeline </h4>
+              {/* <ChatFeed/> */}
+              <LiveFeed/>
+          
             </div>        
           </div>
 
         <div class="column">
-          <div class="card">  <h4> Language Help</h4>
+          <div class="card"> 
+          <img src={language} alt="LanguageHelp" class="responsive"/>
+             <h4> Language Help</h4>
            </div>        
         </div>
 
         <div class="column">
-          <div class="card">  <h4>Experiences</h4> 
+          <div class="card"> 
+          <img src={experience} alt="Experience" class="responsive"/>
+             <h4>Experiences</h4> 
            </div>
         </div>
 
