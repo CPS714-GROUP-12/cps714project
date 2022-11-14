@@ -16,7 +16,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import Typist from "react-typist-component";
 import Avatar from '@mui/material/Avatar';
-import logo from "../assets/vlogo.png";
+import logo from "../assets/vlogo.jpg";
 import "../styles/App.css";
 
 const drawerWidth = 240;
