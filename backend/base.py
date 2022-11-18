@@ -9,6 +9,8 @@ from db__init import db, api, ENV
 from models import LanguageCodeName, PhraseCodeName, Phrases, Restaurants, Users, RestaurantReviews, RestaurantReviewsImages
 from flask_sqlalchemy import SQLAlchemy
 from languages import Language
+import googlemaps
+cors = CORS(api, resources={r"/*": {"origins": "*"}})
 #db.init_app(api)
 
 # please run whole app with api.app_context()
@@ -119,5 +121,29 @@ with api.app_context():
         }
     
         return response_body
+    
+    gmaps = googlemaps.Client(key='AIzaSyAXf5iZ79WWzZ3gf17SVyM9b6i6vOS_QNk', )
+
+    @api.route('/restaurant/recommendation', methods=['GET', 'POST'])
+    @cross_origin()
+    def restaurant_recommendation():
+        args = request.args
+        lat = args.get(key='lat', default=0)
+        lng = args.get(key='lng', default=0)
+        placesResult = gmaps.places(
+            location=(lat, lng),
+            query='restaurant')
+        return placesResult
+
+    @api.route('/entertainment/recommendation', methods=['GET', 'POST'])
+    @cross_origin()
+    def entertainment_recommendation():
+        args = request.args
+        lat = args.get(key='lat', default=0)
+        lng = args.get(key='lng', default=0)
+        placesResult = gmaps.places(
+            location=(lat, lng),
+            query='attractions')
+        return placesResult
 if __name__ == "__main__":
     api.run(debug=True)
