@@ -5,6 +5,7 @@
   "proxy": "http://127.0.0.1:5000/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
+    "@googlemaps/react-wrapper": "github:googlemaps/react-wrapper",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.14",
     "@mui/styles": "^5.10.14",
