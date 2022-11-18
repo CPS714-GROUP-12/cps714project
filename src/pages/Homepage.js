@@ -1,33 +1,24 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import '../styles/App.css';
 import * as React from 'react';
 import AppBar from '../components/AppBar';
-import { experimentalStyled as styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
-import ExpandCard from '../components/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Card from '@mui/material/Card';
 import Typist from "react-typist-component";
-import gpsLogo from '../assets/gps1.jpg';
 import playLogo from '../assets/play.jpg';
 import food from '../assets/food.jpg';
 import language from '../assets/language.jpg';
 import experience from '../assets/experience.jpg';
 // import ChatFeed from './components/ChatFeed';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import LiveFeed from '../components/Feed';
- 
+
+import LiveFeed from '../components/Chat';
+import LanguageHelp from './LanguageHelp';
+    
+
 export default function Homepage(props) {
 
   //code copied from Profile.js. 
@@ -57,7 +48,7 @@ export default function Homepage(props) {
     })}
     
   return (
-    <div>
+    <div class="float-container">
       <AppBar/>
       <div class="row">
       <Typography>
@@ -70,25 +61,50 @@ export default function Homepage(props) {
             </Typist>
         </Typography>
         </div>
-      <div class="row">
-        <div class="column">
-          <div class="card"> 
-          <a href="/restaurant"> 
-          <img src={food} alt="Food" class="responsive"/>
-                   <h4> Restaurant Recommendations</h4> 
-              </a>
-          </div>  
-          </div>    
+     
 
-          <div class="column">
+      <div class="float-child1">
+        <div class="row1"> 
+        <div class="child1">
+        <a href="/restaurant"> 
+          <div class="card" > 
+          <img src={food} alt="Food" class="responsive"/>
+              <h4> Restaurant Recommendations</h4> 
+          </div>  
+          </a>
+
+          <a href="/restaurant"> 
             <div class="card">
             <img src={playLogo} alt="PlayLogo" class="responsive"/>
               <h4> Entertainment Near You</h4>
             </div>
+            </a>
+            </div>
           </div>
 
-          <div class="column">
-            <div class="card"> 
+        <div class="row2" >    
+        <div class="child2">    
+        <a href="/restaurant"> 
+          <div class="card"> 
+          <img src={experience} alt="Experience" class="responsive"/>
+             <h4>Experiences</h4> 
+           </div>
+           </a>
+      
+        <a href="/language_help"> 
+          <div class="card"> 
+          <img src={language} alt="LanguageHelp" class="responsive"/>
+             <h4> Language Help</h4>
+           </div>    
+           </a>    
+           </div>    
+        </div>
+       </div>  
+
+
+        <div class="float-child2"> 
+          <a href="/restaurant"> 
+            <div class="card" id="location"> 
             {/* <img src={gpsLogo} alt="MyGps" class="responsive"/> */}
             <h4> Location </h4>  
             <Card sx={{ maxWidth: 450 }}>
@@ -106,37 +122,19 @@ export default function Homepage(props) {
                 </CardContent>
               </CardActionArea>
             </Card>
-            </div>        
-          </div>
+            </div>    
+            </a>    
 
-        
-          <div class="column">
-            <div class="card" >  
+          <a href="/restaurant"> 
+            <div class="card" id="chatbox"  >   
             <h4> Chat Timeline </h4>
-              {/* <ChatFeed/> */}
+            <div id="chatbox"> 
               <LiveFeed/>
-          
-            </div>        
-          </div>
-
-        <div class="column">
-          <div class="card"> 
-          <img src={language} alt="LanguageHelp" class="responsive"/>
-             <h4> Language Help</h4>
-           </div>        
+            </div>
+            </div>    
+            </a>    
+        
         </div>
-
-        <div class="column">
-          <div class="card"> 
-          <img src={experience} alt="Experience" class="responsive"/>
-             <h4>Experiences</h4> 
-           </div>
-        </div>
-
-
-
-
-      </div>
     </div>
   );
 };

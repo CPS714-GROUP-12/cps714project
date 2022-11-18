@@ -67,9 +67,8 @@ export default function Restaurant() {
             </Card>
             </div> 
             </div>
-
-            
-
+            `
+            `
          <div class="column">
             <div class="card">
              <Card class="card" sx={{ maxWidth: 450 }}>

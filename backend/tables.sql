@@ -13,3 +13,7 @@ CREATE TABLE chat_box (
     created_at TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 ); 
+
+INSERT INTO chat_box (username, chat_value, category) VALUES ($1, $2, $3);
+INSERT INTO chat_box (username, chat_value, category) VALUES ('kyliej1', 'first message', 'music');
+INSERT INTO users (username, email, password, first_name, last_name, salt) VALUES ('kyliej1', 'kylie@gmail.com', 'p123', 'kylie', 'jenner', 'test');

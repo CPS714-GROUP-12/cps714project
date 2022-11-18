@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
-
-db = SQLAlchemy()
+from db__init import db
 
 
 class LanguageCodeName(db.Model):
@@ -11,6 +10,10 @@ class LanguageCodeName(db.Model):
 
     def __init__(self, language_name):
         self.language_name = language_name
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
 
 #add languages here
@@ -84,10 +87,14 @@ class Phrases(db.Model):
     phrase_id = db.Column(db.Integer(), primary_key=True)
     phrase_code = db.Column(db.Integer(), db.ForeignKey("phrase_code_name.phrase_code", ondelete="CASCADE"))
     language_code = db.Column(db.Integer(), db.ForeignKey("language_code_name.language_code", ondelete="CASCADE"))
+    user_id = db.Column(db.Integer(),nullable=True)
     phrase_translated = db.Column(db.String(500), nullable=False, unique=True)
 
-    def __init__(self, eng_phrase):
-        self.eng_phrase = eng_phrase
+    def __init__(self, phrase_code, language_code, phrase_translated, user_id=None):
+        self.phrase_code = phrase_code
+        self.language_code = language_code
+        self.user_id = user_id
+        self.phrase_translated = phrase_translated
 
     def save(self):
         db.session.add(self)
@@ -117,43 +124,6 @@ class Phrases(db.Model):
 
         return self.toDICT()
 
-#use api to translate phrases here.
-
-#do we need a country and address table? How would we use them?
-# class Addresses(db.Model):
-#     __tablename__ = 'language_code_name'
-#     language_code = db.Column(db.Integer(), primary_key=True)
-#     language_name = db.Column(db.String(32), nullable=False, unique=True)
-#     language_code = db.Column(db.Integer(), db.ForeignKey("language_code_name.language_code", ondelete="CASCADE"))
-
-#     def __init__(self, language_name):
-#         self.language_name = language_name
-
-#     def save(self):
-#         db.session.add(self)
-#         db.session.commit()
-
-#     def check_jwt_auth_active(self):
-#         return self.jwt_auth_active
-
-#     def set_jwt_auth_active(self, set_status):
-#         self.jwt_auth_active = set_status
-
-#     @classmethod
-#     def get_by_id(cls, id):
-#         return cls.query.get_or_404(id)
-
-#     def toDICT(self):
-
-#         cls_dict = {}
-#         cls_dict['_id'] = self.id
-#         cls_dict['language_name'] = self.username
-
-#         return cls_dict
-
-#     def toJSON(self):
-
-#         return self.toDICT()
 
 class Restaurants(db.Model):
     __tablename__ = 'restaurants'
@@ -162,8 +132,9 @@ class Restaurants(db.Model):
     restaurant_location = db.Column(db.String(50), nullable=False)
     language_code = db.Column(db.Integer(), db.ForeignKey("language_code_name.language_code", ondelete="CASCADE"))
 
-    def __init__(self, restaurant_name, language_code):
+    def __init__(self, restaurant_name, restaurant_location, language_code):
         self.restaurant_name = restaurant_name
+        self.restaurant_location = restaurant_location
         self.language_code = language_code
 
     def save(self):
@@ -212,7 +183,7 @@ class Users(db.Model):
     profile_picture_flag = db.Column(db.String(1), default="Y")
 
 
-    def __init__(self, username, email, password, first_name, last_name, location: None):
+    def __init__(self, username, email, password, first_name, last_name, location= None):
         # self.user_id=user_id
         self.username = username
         self.email = email
@@ -272,14 +243,15 @@ class Users(db.Model):
 class RestaurantReviews(db.Model):
     __tablename__ = 'restaurant_reviews'
     review_id = db.Column(db.Integer(), primary_key=True)
-    restaurant_id = db.Column(db.Integer(), db.ForeignKey("restaurants.restaurant_id", ondelete="CASCADE"))
     user_id = db.Column(db.Integer(), db.ForeignKey("users.user_id", ondelete="CASCADE"))
+    restaurant_id = db.Column(db.Integer(), db.ForeignKey("restaurants.restaurant_id", ondelete="CASCADE"))
     rating = db.Column(db.Float(), default=None)
     review_header = db.Column(db.String(100), nullable=False)
     review_body = db.Column(db.String(1000), nullable=False)
 
-    def __init__(self, user_id, rating: None, review_header, review_body):
+    def __init__(self, user_id, restaurant_id, review_header, review_body, rating=None):
         self.user_id =          user_id
+        self.restaurant_id =    restaurant_id
         self.rating =           rating
         self.review_header =    review_header
         self.review_body =      review_body
@@ -351,6 +323,50 @@ class RestaurantReviewsImages(db.Model):
         cls_dict['image_id'] = self.image_id
         cls_dict['review_id'] = self.review_id
         cls_dict['image_path'] = self.image_path
+
+        return cls_dict
+
+    def toJSON(self):
+
+        return self.toDICT()
+
+class chat_box(db.Model):
+    __tablename__ = 'chat_box'
+    chat_id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
+    chat_value = db.Column(db.String(255), nullable=False)
+    category = db.Column(db.String(255), nullable=False)
+    created_on = db.Column(db.DateTime(timezone=True), server_default=func.now())       #https://stackoverflow.com/questions/13370317/sqlalchemy-default-datetime
+
+    def __init__(self, chat_id, user_id, chat_value, category, created_on):
+        self.chat_id = chat_id
+        self.user_id = user_id
+        self.chat_value = chat_value
+        self.category = category
+        self.created_on = created_on
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def set_chat_value(self, chat_value):
+        self.chat_value = chat_value
+
+    def set_category(self, category):
+        self.category = category
+
+    @classmethod
+    def get_by_id(cls, id):
+        return cls.query.get_or_404(id)
+
+    def toDICT(self):
+
+        cls_dict = {}
+        cls_dict['chat_id'] = self.chat_id
+        cls_dict['user_id'] = self.user_id
+        cls_dict['chat_value'] = self.chat_value
+        cls_dict['category'] = self.category
+        cls_dict['created_on'] = self.created_on
 
         return cls_dict
 
