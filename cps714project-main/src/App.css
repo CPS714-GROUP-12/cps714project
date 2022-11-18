@@ -1,0 +1,115 @@
+
+/* For viewprofile, appbar, editprofile, card - F.R. */
+
+h1 {
+  color: lightgrey;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 50px;
+  margin-bottom: 80px;
+
+  }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background: #141e30;
+  color: #FF0054;
+  border-radius: 25px;
+  overflow: scroll;
+
+}
+
+.card:hover {
+  background: #243b55;
+}
+
+#appbar {
+  background: linear-gradient(#141e30, #243b55);
+  color: #fff;
+}
+
+#appbar-hover:hover {
+  background: #FF0054;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+
+.Typist {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 76px;
+  margin-top: -30px;
+}
+.Typist .Cursor--blinking {
+  color: #FF0054;
+  padding-left: 4px;
+}
+
+#intro-title {
+  font-family:var(--font-sans);
+  font-size: 46px;
+  color: rgb(255, 255, 255);
+  
+}
+
+#intro-name {
+  font-family:var(--font-sans);
+  font-size: 46px;
+  color: #FF0054;
+  
+}
+
+.card column{
+  width: 50%;
+
+}
+
+.text {
+  color: #fff;
+}

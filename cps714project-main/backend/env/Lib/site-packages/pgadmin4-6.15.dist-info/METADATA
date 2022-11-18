@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: pgadmin4
+Version: 6.15
+Summary: PostgreSQL Tools
+Home-page: https://www.pgadmin.org/
+Author: The pgAdmin Development Team
+Author-email: pgadmin-hackers@postgresql.org
+License: PostgreSQL Licence
+Keywords: pgadmin4,postgresql,postgres
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Dist: Flask-Gravatar (==0.*)
+Requires-Dist: Flask-Login (==0.*)
+Requires-Dist: Flask-Mail (==0.*)
+Requires-Dist: Flask-Migrate (==3.*)
+Requires-Dist: Flask-SQLAlchemy (==2.5.*)
+Requires-Dist: Flask-WTF (==1.*)
+Requires-Dist: Flask-Compress (==1.*)
+Requires-Dist: Flask-Paranoid (==0.*)
+Requires-Dist: Flask-Babel (==2.*)
+Requires-Dist: Flask-Security-Too (==4.1.*)
+Requires-Dist: Flask-SocketIO (<=5.2.0)
+Requires-Dist: WTForms (==3.*)
+Requires-Dist: passlib (==1.*)
+Requires-Dist: pytz (==2021.*)
+Requires-Dist: simplejson (==3.*)
+Requires-Dist: speaklater3 (==1.*)
+Requires-Dist: sqlparse (==0.*)
+Requires-Dist: psutil (==5.*)
+Requires-Dist: psycopg2-binary (==2.9.*)
+Requires-Dist: python-dateutil (==2.*)
+Requires-Dist: SQLAlchemy (==1.4.*)
+Requires-Dist: bcrypt (==3.*)
+Requires-Dist: cryptography (==3.*)
+Requires-Dist: sshtunnel (==0.*)
+Requires-Dist: ldap3 (==2.*)
+Requires-Dist: eventlet (==0.33.0)
+Requires-Dist: httpagentparser (==1.9.*)
+Requires-Dist: user-agents (==2.2.0)
+Requires-Dist: Authlib (==0.15.*)
+Requires-Dist: requests (==2.25.*)
+Requires-Dist: pyotp (==2.*)
+Requires-Dist: qrcode (==7.*)
+Requires-Dist: boto3 (==1.20.*)
+Requires-Dist: botocore (==1.23.*)
+Requires-Dist: urllib3 (==1.26.*)
+Requires-Dist: azure-mgmt-rdbms (==10.1.0)
+Requires-Dist: azure-mgmt-resource (==21.0.0)
+Requires-Dist: azure-mgmt-subscription (==3.0.0)
+Requires-Dist: azure-identity (==1.9.0)
+Requires-Dist: Flask (==2.0.3) ; python_version <= "3.6"
+Requires-Dist: Pillow (==8.4.*) ; python_version <= "3.6"
+Requires-Dist: Werkzeug (==2.0.3) ; python_version <= "3.6"
+Requires-Dist: Flask (==2.1.*) ; python_version >= "3.7"
+Requires-Dist: Pillow (==9.*) ; python_version >= "3.7"
+Requires-Dist: Werkzeug (==2.1.2) ; python_version >= "3.7"
+Requires-Dist: pywinpty (==1.1.*) ; sys_platform == "win32"
+Provides-Extra: kerberos
+Requires-Dist: gssapi (==1.7.*) ; extra == 'kerberos'
+
+pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
+
+pgAdmin may be used on Linux, Unix, macOS and Windows to manage PostgreSQL and EDB Advanced Server 10 and above.
+
