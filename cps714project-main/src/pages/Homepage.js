@@ -16,10 +16,12 @@ import experience from '../assets/experience.jpg';
 // import ChatFeed from './components/ChatFeed';
 
 import LiveFeed from '../components/Chat';
- 
+import LanguageHelp from './LanguageHelp';
+
+
 export default function Homepage(props) {
 
-  //code copied from Profile.js. 
+  //code copied from Profile.js.
   //Note: reduce repetitive code! - F.R.
 
   const [profileData, setProfileData] = useState(null)
@@ -44,9 +46,9 @@ export default function Homepage(props) {
         console.log(error.response.headers)
         }
     })}
-    
+
   return (
-    <div>
+    <div class="float-container">
       <AppBar/>
       <div class="row">
       <Typography>
@@ -54,32 +56,57 @@ export default function Homepage(props) {
             <span id="intro-title">
             {"Welcome back, "}
             {/* <span id="intro-name">{profileData.profile_name}</span> */}
-            <span id="intro-name">{"user."}</span> 
+            <span id="intro-name">{"user."}</span>
           </span>
             </Typist>
         </Typography>
         </div>
-      <div class="row">
-        <div class="column">
-          <div class="card"> 
-          <a href="/restaurant"> 
-          <img src={food} alt="Food" class="responsive"/>
-                   <h4> Restaurant Recommendations</h4> 
-              </a>
-          </div>  
-          </div>    
 
-          <div class="column">
+
+      <div class="float-child1">
+        <div class="row1">
+        <div class="child1">
+        <a href="/restaurant">
+          <div class="card" >
+          <img src={food} alt="Food" class="responsive"/>
+              <h4> Restaurant Recommendations</h4>
+          </div>
+          </a>
+
+          <a href="/entertainment">
             <div class="card">
             <img src={playLogo} alt="PlayLogo" class="responsive"/>
               <h4> Entertainment Near You</h4>
             </div>
+            </a>
+            </div>
           </div>
 
-          <div class="column">
-            <div class="card"> 
+        <div class="row2" >
+        <div class="child2">
+        <a href="/restaurant">
+          <div class="card">
+          <img src={experience} alt="Experience" class="responsive"/>
+             <h4>Experiences</h4>
+           </div>
+           </a>
+
+        <a href="/language_help">
+          <div class="card">
+          <img src={language} alt="LanguageHelp" class="responsive"/>
+             <h4> Language Help</h4>
+           </div>
+           </a>
+           </div>
+        </div>
+       </div>
+
+
+        <div class="float-child2">
+          <a href="/restaurant">
+            <div class="card" id="location">
             {/* <img src={gpsLogo} alt="MyGps" class="responsive"/> */}
-            <h4> Location </h4>  
+            <h4> Location </h4>
             <Card sx={{ maxWidth: 450 }}>
               <CardActionArea>
                 <CardMedia
@@ -95,35 +122,19 @@ export default function Homepage(props) {
                 </CardContent>
               </CardActionArea>
             </Card>
-            </div>        
-          </div>
+            </div>
+            </a>
 
-        
-          <div class="column">
-            <div class="card" >  
+
+            <div class="card" id="chatbox"  >
             <h4> Chat Timeline </h4>
-              {/* <ChatFeed/> */}
+            <div id="chatbox">
               <LiveFeed/>
-          
-            </div>        
-          </div>
+            </div>
+            </div>
 
-        <div class="column">
-          <div class="card">
-          <a href="/language_help">
-          <img src={language} alt="LanguageHelp" class="responsive"/>
-             <h4> Language Help</h4>
-             </ a>
-           </div>        
-        </div>
 
-        <div class="column">
-          <div class="card"> 
-          <img src={experience} alt="Experience" class="responsive"/>
-             <h4>Experiences</h4> 
-           </div>
         </div>
-      </div>
     </div>
   );
 };

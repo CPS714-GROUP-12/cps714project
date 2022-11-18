@@ -15,9 +15,9 @@ import {
   Paper
 } from "@mui/material"
 import axios from "axios"
+import '../styles/App.css';
 
-
-export default function LanguageHelp(props){
+export default function LanguageHelpTab(props){
   const [data, setData] = useState([{}])
   const [value, setValue] = useState("")
 
@@ -62,14 +62,12 @@ export default function LanguageHelp(props){
       <div>
 
         <form action="#"  method="post">
-
-        <FormControl style={{minWidth: "40vw", marginTop: "25vh", marginLeft: "25vw"}}>
+        <FormControl sx={{ minWidth: 300}}>
           <InputLabel>Select A Language</InputLabel>
           <Select onChange={send_data}>
           { data.languages.map( (member) => (
               <MenuItem value={member}>{member}</MenuItem>
-            )
-          )
+            ))
           }
           </Select>
         </FormControl>
@@ -83,14 +81,12 @@ export default function LanguageHelp(props){
           english: data.english[i],
           translated: data.translated[i]
         })
-      };console.log(tableData)
+      };
+      console.log(tableData);
       return (
-
         <div>
-
           <form action="#"  method="post">
-
-          <FormControl style={{minWidth: "40vw", marginTop: "25vh", marginLeft: "25vw"}}>
+          <FormControl>
             <InputLabel>Select A Language</InputLabel>
             <Select onChange={send_data}>
             { data.languages.map( (member) => (

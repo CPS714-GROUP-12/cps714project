@@ -15,6 +15,11 @@ body {
   
 }
 
+a {
+  text-decoration: none;
+  color: #48CFAE;
+}
+
 /* Float four columns side by side */
 .column {
   float: left;
@@ -22,14 +27,67 @@ body {
   padding: 10px 10px;
 }
 
+.col1 {
+  float: left;
+  width: 33.33%;
+  padding: 10px 10px;
+
+}
+
+.col2 {
+  float: left;
+  width: 33.33%;
+  padding: 10px 10px;
+
+}
+
+.float-container {
+  border: 3px solid #fff;
+  padding: 20px
+}
+
+.float-child1 {
+  width: 60%;
+  float: left;
+  padding: 20px;
+}
+
+.float-child2 {
+  width: 40%;
+  float: left;
+  padding: 20px;
+}
+
+.child1 {
+  width: 100%;
+  float: left;
+  padding: 20px;
+}
+
+.child2 {
+  width: 100%;
+  float: left;
+  padding: 20px;
+
+}
+
 /* Remove extra left and right margins, due to padding in columns */
 .row {
-  margin-left: 150px;
+  margin-left: 90px;
   margin-right: 150px;
   margin-top: 50px;
   margin-bottom: 80px;
 
   }
+
+  /* #row1 {
+    width: 100%;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+  } */
+
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -47,11 +105,34 @@ body {
   background: #FEFEFD;
   color: #48CFAE;
   border-radius: 25px;
-  max-height: 50%;
+  max-height: 40%;
+  width: 40%;
+  float: left;
+  margin-left: 5%;
+  margin-right: 2.5%;
 }
 
+
+#chatbox {
+  width: 80%;
+  margin-left:10%;
+  margin-top: 8%;
+}
+
+#location {
+  width: 80%;
+  margin-left:10%;
+  margin-top: 3.5%;
+}
+
+.card ul{
+  background: transparent;
+
+}
 .card:hover {
   background: #c2edda;
+  transform: scale(1.1);
+  transition: 1s;
 }
 
 #appbar {
@@ -78,7 +159,6 @@ body {
   }
 }
 
-
 .Typist {
   color: rgb(255, 255, 255);
   text-align: center;
@@ -94,14 +174,14 @@ body {
   font-family:var(--font-sans);
   font-size: 46px;
   color: #19201E;
-  
+
 }
 
 #intro-name {
   font-family:var(--font-sans);
   font-size: 46px;
   color: #FFAB2D;
-  
+
 }
 
 .card column{
@@ -243,7 +323,6 @@ body {
   0% {
       top: -100%;
   }
-
   50%,
   50% {
       top: 100%;
@@ -285,7 +364,6 @@ body {
   0% {
       bottom: -100%;
   }
-
   50%,
   50% {
       bottom: 100%;
@@ -299,4 +377,9 @@ body {
   background: none;
   color: none;
   box-shadow: none;
+}
+
+.form {
+
+  overflow: hidden;
 }

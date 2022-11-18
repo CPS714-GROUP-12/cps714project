@@ -133,5 +133,17 @@ with api.app_context():
             query='restaurant')
         return placesResult
 
+
+    @api.route('/entertainment/recommendation', methods=['GET', 'POST'])
+    @cross_origin()
+    def entertainment_recommendation():
+        args = request.args
+        lat = args.get(key='lat', default=0)
+        lng = args.get(key='lng', default=0)
+        placesResult = gmaps.places(
+            location=(lat, lng),
+            query='attractions')
+        return placesResult
+
 if __name__ == "__main__":
     api.run(debug=True)
