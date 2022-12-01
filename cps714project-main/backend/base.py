@@ -132,6 +132,12 @@ with api.app_context():
             location=(lat, lng),
             query='restaurant')
         return placesResult
-
+    
+    
+    @api.route('/events/recommendation', methods=['GET'])
+    @cross_origin()
+    def nearby_events():
+        return maps_places('events')
+    
 if __name__ == "__main__":
     api.run(debug=True)
