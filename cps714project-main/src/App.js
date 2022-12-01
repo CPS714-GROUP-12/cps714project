@@ -10,6 +10,7 @@ import { ViewAgenda } from '@mui/icons-material'
 import ViewProfile from './pages/ViewProfile';
 import Restaurant from './pages/RestaurantRecommendation';
 import LanguageHelp from './pages/LanguageHelp';
+import EventsRecommendation from './pages/EventsRecommendation.lazy'
 
 function App() {
   const { token, removeToken, setToken } = useToken();
@@ -24,6 +25,7 @@ function App() {
               <Route path="/homepage"  element={<Homepage />}></Route>
               <Route path="/userprofile"  element={<ViewProfile />}></Route>
               <Route path="/restaurant"  element={<Restaurant />}></Route>
+              <Route path="/events"  element={<EventsRecommendation />}></Route>
               <Route path="/language_help"  element={<LanguageHelp />}></Route>
 
             </Routes>
