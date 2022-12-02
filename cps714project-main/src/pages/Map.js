@@ -84,7 +84,7 @@ const MapLocation = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/homepage", {
+      .get("http://localhost:5000/map", {
         params: {
           lat: coords.latitude,
           lng: coords.longitude,
@@ -102,10 +102,10 @@ const MapLocation = () => {
 
   return (
     <Grid container>
-      <Grid item md={4}>
+      <Grid item md={1}>
         <Button onClick={handleCurrentLocation}>CURRENT LOCATION</Button>
       </Grid>
-      <Grid item md={8}>
+      <Grid item md={12}>
         <MyApp coords={coords} />
       </Grid>
     </Grid>

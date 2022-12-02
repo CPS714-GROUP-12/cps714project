@@ -103,7 +103,7 @@ export default function Homepage(props) {
 
 
         <div class="float-child2">
-          <a href="/restaurant">
+          <a href="/map">
             <div class="card" id="location">
             {/* <img src={gpsLogo} alt="MyGps" class="responsive"/> */}
             <h4> Location </h4>

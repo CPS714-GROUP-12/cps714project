@@ -230,6 +230,17 @@ with api.app_context():
             query='attractions')
         return placesResult
 
+
+    @api.route('/map', methods=['GET', 'POST'])
+    @cross_origin()
+    def map():
+        args = request.args
+        lat = args.get(key='lat', default=0)
+        lng = args.get(key='lng', default=0)
+        placesResult = gmaps.places(
+            location=(lat, lng))
+        return placesResult
+
     @api.route('/events/recommendation', methods=['GET'])
     @cross_origin()
     def nearby_events():

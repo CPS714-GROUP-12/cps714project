@@ -13,6 +13,7 @@ import LanguagePageCard from './pages/LanguagePage';
 import LanguageHelp from './pages/LanguageHelp';
 import Entertainment from './pages/Entertainment';
 import EventsRecommendation from './pages/EventsRecommendation'
+import Map from './pages/Map'
 
 function App() {
   const { token, removeToken, setToken } = useToken();
@@ -30,7 +31,7 @@ function App() {
               <Route path="/entertainment"  element={<Entertainment />}></Route>
               <Route path="/events"  element={<EventsRecommendation />}></Route>
               <Route path="/language_help"  element={<LanguagePageCard />}></Route>
-
+              <Route path="/map"  element={<Map />}></Route>
             </Routes>
       </div>
     </BrowserRouter>
