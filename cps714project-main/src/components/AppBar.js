@@ -21,7 +21,7 @@ import "../styles/App.css";
 import axios from "axios";
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Edit Profile', 'Contact Us', 'Logout'];
+const navItems = ['Home', 'Edit Profile', 'Logout'];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -111,17 +111,12 @@ function DrawerAppBar(props) {
               </Button>
               </a>
 
-              <a href="/contact">
+              <a href="/">
               <Button id="appbar-hover" sx={{ color: '#FFAB2D'}}>
                 {navItems[2]}
               </Button>
               </a>
 
-              <a href="/">
-              <Button id="appbar-hover" sx={{ color: '#FFAB2D'}}>
-                {navItems[3]}
-              </Button>
-              </a>
           </Box>
         </Toolbar>
       </AppBar>
