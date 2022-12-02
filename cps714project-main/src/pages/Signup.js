@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import '../styles/signup.css'
@@ -6,6 +7,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Signup(props) {
+    const myelement = (
+        <p id="signup-link"> Please try again. Password must have a minimum length of 6 and contain lowercase letters, uppercase letters and a number. </p>
+    );
+    const myelement2 = (
+        <p id="signup-link"> Signup Successful! </p>
+    );
 
     const [signUpForm, setSignUpForm] = useState({
       email: "",
@@ -31,20 +38,15 @@ function Signup(props) {
          }
       })
       .then((response) => {
+        ReactDOM.render(myelement2, document.getElementById('boxy'));
         props.setToken(response.data.access_token)
+
       }).catch((error) => {
         if (error.response) {
           console.log(error.response)
           console.log(error.response.status)
           console.log(error.response.headers)
-          toast.error(error.response, {
-            position: "top-center",
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: 0,
-            });
+          ReactDOM.render(myelement, document.getElementById('boxy'));
           }
       })
 
@@ -71,7 +73,7 @@ function Signup(props) {
       <h2>Signup</h2>
       <form>
 
-
+        <div id="boxy"> </div>
         <div className="user-box">
           <input onChange={handleChange}
                  type="text" name="first_name"

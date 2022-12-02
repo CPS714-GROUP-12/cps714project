@@ -54,9 +54,9 @@ export default function Homepage(props) {
       <Typography>
             <Typist typingDelay={100} cursor={<span className="cursor"></span>}>
             <span id="intro-title">
-            {"Welcome back, "}
+            {"Welcome back "}
             {/* <span id="intro-name">{profileData.profile_name}</span> */}
-            <span id="intro-name">{"user."}</span>
+            <span id="intro-name">{"to Vacatio."}</span>
           </span>
             </Typist>
         </Typography>
