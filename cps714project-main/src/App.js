@@ -11,6 +11,7 @@ import ViewProfile from './pages/ViewProfile';
 import Restaurant from './pages/RestaurantRecommendation';
 import LanguageHelp from './pages/LanguageHelp';
 import Entertainment from './pages/Entertainment';
+import EventsRecommendation from './pages/EventsRecommendation'
 
 function App() {
   const { token, removeToken, setToken } = useToken();
@@ -26,6 +27,7 @@ function App() {
               <Route path="/userprofile"  element={<ViewProfile />}></Route>
               <Route path="/restaurant"  element={<Restaurant />}></Route>
               <Route path="/entertainment"  element={<Entertainment />}></Route>
+              <Route path="/events"  element={<EventsRecommendation />}></Route>
               <Route path="/language_help"  element={<LanguageHelp />}></Route>
 
             </Routes>

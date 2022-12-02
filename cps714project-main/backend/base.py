@@ -177,7 +177,6 @@ with api.app_context():
 
         return response_body
 
-
     gmaps = googlemaps.Client(key='AIzaSyAXf5iZ79WWzZ3gf17SVyM9b6i6vOS_QNk', )
 
     @api.route('/restaurant/recommendation', methods=['GET', 'POST'])
@@ -201,6 +200,17 @@ with api.app_context():
         placesResult = gmaps.places(
             location=(lat, lng),
             query='attractions')
+        return placesResult
+
+    @api.route('/events/recommendation', methods=['GET'])
+    @cross_origin()
+    def nearby_events():
+        args = request.args
+        lat = args.get(key='lat', default=0)
+        lng = args.get(key='lng', default=0)
+        placesResult = gmaps.places(
+            location=(lat, lng),
+            query='events')
         return placesResult
 
 if __name__ == "__main__":

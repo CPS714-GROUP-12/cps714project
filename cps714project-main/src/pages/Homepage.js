@@ -84,7 +84,7 @@ export default function Homepage(props) {
 
         <div class="row2" >
         <div class="child2">
-        <a href="/restaurant">
+        <a href="/events">
           <div class="card">
           <img src={experience} alt="Experience" class="responsive"/>
              <h4>Experiences</h4>
