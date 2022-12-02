@@ -155,8 +155,33 @@ export default function LiveFeed(props) {
             </React.Fragment>
           }
         />
+              </ListItem>
+
+
+<Divider variant="inset" component="li" />
+      <ListItem alignItems="flex-start">
+        {/* <ListItemAvatar>
+          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+        </ListItemAvatar> */}
+        <ListItemText
+          primary="Good Music"
+          secondary={
+            <React.Fragment>
+              <Typography
+                sx={{ display: 'inline' }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+              >
+                John Snow
+              </Typography>
+              {' — Check out the music nearby! '}
+            </React.Fragment>
+          }
+        />
       </ListItem>
     </List>
+
     <FormControl sx={{ m: 1, width: '90%' }}>
     <TextField
          id="outlined-select-category"
