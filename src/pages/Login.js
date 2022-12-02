@@ -133,7 +133,7 @@ export default function Login(props) {
         password: ""}))
 
       event.preventDefault()
-      navigate('/profile')
+      navigate('/homepage')
 
     }
 
