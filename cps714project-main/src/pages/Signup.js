@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import '../styles/signup.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Signup(props) {
 
@@ -13,6 +15,7 @@ function Signup(props) {
       first_name: "",
       last_name: ""
     })
+    const toastId = toast.loading("Please wait...")
 
     function signUp(event) {
       axios({
@@ -34,6 +37,14 @@ function Signup(props) {
           console.log(error.response)
           console.log(error.response.status)
           console.log(error.response.headers)
+          toast.error(error.response, {
+            position: "top-center",
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: 0,
+            });
           }
       })
 

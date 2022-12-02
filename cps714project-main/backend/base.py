@@ -13,6 +13,10 @@ from models import LanguageCodeName, PhraseCodeName, Phrases, Restaurants, Users
 from flask_sqlalchemy import SQLAlchemy
 from languages import Language
 import googlemaps
+
+CAPITALALPHABETS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+SMALLALPHABETS = "abcdefghijklmnopqrstuvwxyz"
+DIGITS = "0123456789"
 cors = CORS(api, resources={r"/*": {"origins": "*"}})
 
 # db.init_app(api)
@@ -92,6 +96,8 @@ with api.app_context():
 
     @api.route("/signup", methods=["GET", "POST"])
     def signup():
+        l, u, d, plen = 0, 0, 0, 0
+
         username = request.json.get("username", None)
         email = request.json.get("email", None)
         password = request.json.get("password", None)
@@ -101,11 +107,63 @@ with api.app_context():
         if password != verify_password:
             return {"msg": "Password do not match."}, 401
 
+
+        for i in password:
+            # counting lowercase alphabets
+            if (i in SMALLALPHABETS):
+                l += 1
+
+                # counting uppercase alphabets
+            if (i in CAPITALALPHABETS):
+                u += 1
+
+                # counting digits
+            if (i in DIGITS):
+                d += 1
+            plen+=1
+
+        if not (l >= 1 and u >= 1 and d >= 1 and plen >= 6):
+            return {"msg": "Password must have a minimum length of 6 and contain lowercase, uppercase letters and a number."}, 401
+
         data = Users(username, email, password, first_name, last_name, location=None)
         db.session.add(data)
         db.session.commit()
 
-        response = jsonify({"msg": "Signup Successful"})
+        response = jsonify({"msg": "User Successfully Created!"})
+        return response
+
+
+    @api.route("/userprofile", methods=["GET", "POST"])
+    def editprofile():
+        l, u, d, plen = 0, 0, 0, 0
+        username = request.json.get("username", None)
+        email = request.json.get("email", None)
+        password = request.json.get("password", None)
+        verify_password = request.json.get("verify_password", None)
+        if password != verify_password:
+            return {"msg": "Password do not match."}, 401
+
+        for i in password:
+            # counting lowercase alphabets
+            if (i in SMALLALPHABETS):
+                l += 1
+
+                # counting uppercase alphabets
+            if (i in CAPITALALPHABETS):
+                u += 1
+
+                # counting digits
+            if (i in DIGITS):
+                d += 1
+            plen+=1
+
+        if not (l >= 1 and u >= 1 and d >= 1 and plen >= 6):
+            return {"msg": "Password must have a minimum length of 6 and contain lowercase, uppercase letters and a number."}, 401
+
+        db.session.query(Users).filter_by(email=email).update({'username': username, 'email': email, 'password': password})
+        db.session.commit()
+
+        response = jsonify({"msg": "Edit Profile Successful"})
         return response
 
 

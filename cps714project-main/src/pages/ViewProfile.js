@@ -16,21 +16,17 @@ export default function Homepage(props) {
     username: "",
     password: "",
     verify_password: "",
-    first_name: "",
-    last_name: ""
   })
 
   function EditProfile(event) {
     axios({
       method: "POST",
-      url:"/EditProfile",
+      url:"/userprofile",
       data:{
         email: EditProfileForm.email,
         username: EditProfileForm.username,
         password: EditProfileForm.password,
         verify_password: EditProfileForm.verify_password,
-        first_name: EditProfileForm.first_name,
-        last_name: EditProfileForm.last_name,
        }
     })
     .then((response) => {
@@ -48,8 +44,7 @@ export default function Homepage(props) {
       username: "",
       password: "",
       verify_password: "",
-      first_name: "",
-      last_name: ""}))
+    }))
 
     event.preventDefault()
   }
@@ -102,7 +97,7 @@ export default function Homepage(props) {
 
         <div className="user-box">
           <input onChange={handleChange}
-                  type="verify_password"
+                  type="password"
                   text={EditProfileForm.verify_password}
                   name="verify_password"
                   value={EditProfileForm.verify_password}
