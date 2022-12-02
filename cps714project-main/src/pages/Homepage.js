@@ -16,8 +16,8 @@ import experience from '../assets/experience.jpg';
 // import ChatFeed from './components/ChatFeed';
 
 import LiveFeed from '../components/Chat';
-import LanguageHelp from './LanguageHelp';
-
+import LanguagePageCard from './LanguagePage';
+import MapLocation from './Map';
 
 export default function Homepage(props) {
 
@@ -103,27 +103,26 @@ export default function Homepage(props) {
 
 
         <div class="float-child2">
-          <a href="/restaurant">
             <div class="card" id="location">
             {/* <img src={gpsLogo} alt="MyGps" class="responsive"/> */}
             <h4> Location </h4>
             <Card sx={{ maxWidth: 450 }}>
               <CardActionArea>
-                <CardMedia
+                {/* <CardMedia
                   component="img"
                   height="140"
                   image={require("../assets/toronto.jpg")}
                   alt="toronto map"
-                />
-                <CardContent>
+                /> */}
+                <CardContent >
                   <Typography gutterBottom variant="h8" component="div">
                     Your Location: Toronto
+                    {MapLocation}
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
             </div>
-            </a>
 
 
             <div class="card" id="chatbox"  >

@@ -1,5 +1,4 @@
-//edit user profile
-
+//edit user profile 
 import { useState } from 'react';
 import axios from "axios";
 import '../styles/App.css';
@@ -7,10 +6,11 @@ import * as React from 'react';
 //import { AppBar } from '@mui/material';
 import AppBar from '../components/AppBar';
 import LanguageHelpTab from './LanguageHelp';
+import '../styles/login.css';
 
-export default function Homepage(props) {
+export default function LanguagePageCard(props) {
 
-  //code copied from Profile.js.
+  //code copied from Profile.js. 
   //Note: reduce repetitive code! - F.R.
   const [EditProfileForm, setEditProfileForm] = useState({
     email: "",
@@ -63,12 +63,13 @@ export default function Homepage(props) {
 
   return (
     <div>
-      <AppBar/>
+      <AppBar/>  
       <div className="login-box">
       <h2>Choose your language: </h2>
         <div className="user-box">
           <LanguageHelpTab/>
           </div>
+
     </div>
     </div>
 

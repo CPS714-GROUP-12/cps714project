@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+#from flask.helpers import send_from_directory
+#from datetime import datetime, timedelta, timezone
+#from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required, \JWTManager
 
-# from flask.helpers import send_from_directory
-# from datetime import datetime, timedelta, timezone
-# from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required, \JWTManager
-
-api = Flask(__name__, static_folder="cps714project-main/build", static_url_path='')
+# api = Flask(__name__, static_folder="flask_react/build", static_url_path='')
+api = Flask(__name__)
 
 ENV = 'prod'
 if ENV == 'dev':
@@ -16,7 +16,7 @@ else:
     api.config[
         'SQLALCHEMY_DATABASE_URI'] = 'postgresql://chester:f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE@dpg-cdirkg6n6mpngrt4589g-a.oregon-postgres.render.com/vacatio'
     #     internal_uri = "postgresql://chester:f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE@dpg-cdirkg6n6mpngrt4589g-a/vacatio"
-
+    
     #       connecting render db to pgadmin4:
     #       go to dashboard tab, add new server
     #       name it whatever you want in general tab
@@ -25,6 +25,7 @@ else:
     #           maintanace database:    vacatio
     #           username:               chester (will change later to cps714)
     #           password:               f9YrxuFasCyzuvuSeeRK6UgIJc4cBlQE
-    #       save
+    #       save 
 api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(api)

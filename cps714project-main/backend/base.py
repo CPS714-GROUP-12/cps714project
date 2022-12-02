@@ -15,7 +15,7 @@ from languages import Language
 import googlemaps
 cors = CORS(api, resources={r"/*": {"origins": "*"}})
 
-# db.init_app(api)
+db.init_app(api)
 
 # please run whole app with api.app_context()
 with api.app_context():
@@ -107,7 +107,33 @@ with api.app_context():
 
         response = jsonify({"msg": "Signup Successful"})
         return response
+    
+    # @api.route("/language_help", methods=["GET", "POST"])
+    def get_data(cl, mode):
+     with api.app_context():
+        l=Language()
+        print(l)
+        phrases = l.list_available_phrases(chosen_language)
+        print(phrases)
+        phrases["languages"] = l.list_available_languages()[1:]
+        if (mode=="LANG"):
+            return {"languages": l.list_available_languages()[1:]}
+        return phrases    
+    
+    chosen_language="french"
+    
+    print("hello")
+    print(get_data(chosen_language, "LANG"));
 
+    @api.route("/language_help", methods=["POST"])
+    def get_language():
+        global chosen_language
+        chosen_language=request.json["chosenLanguage"]
+        return get_data(chosen_language, "DATA")
+
+    @api.route("/language_help", methods=["GET"])
+    def language_help():
+        return get_data(chosen_language, "LANG")
 
     @jwt_required()  # new line
     @api.route('/profile', methods=["GET", "POST"])
@@ -116,10 +142,7 @@ with api.app_context():
             "name": "Test",
             "about": "Hello! Testing"
         }
-
-        return response_body
-
-
+    
     gmaps = googlemaps.Client(key='AIzaSyAXf5iZ79WWzZ3gf17SVyM9b6i6vOS_QNk', )
 
     @api.route('/restaurant/recommendation', methods=['GET', 'POST'])
