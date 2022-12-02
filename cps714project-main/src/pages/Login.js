@@ -92,13 +92,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import '../styles/login.css'
-import ReactDOM from 'react-dom';
 
 export default function Login(props) {
 
-    const myelement = (
-        <p id="signup-link"> Incorrect username/password. Please try again. </p>
-    );
     const navigate = useNavigate();
     const [loginForm, setloginForm] = useState({
       email: "",
@@ -121,16 +117,14 @@ export default function Login(props) {
       })
       .then((response) => {
         props.setToken(response.data.access_token)
-        navigate('/homepage')
       }).catch((error) => {
         if (error.response) {
           console.log(error.response)
           console.log(error.response.status)
           console.log(error.response.headers)
           console.error("ERROR")
-          ReactDOM.render(myelement, document.getElementById('boxy'));
-          return
-
+          navigate('/')
+          return;
           }
       })
 
@@ -139,7 +133,7 @@ export default function Login(props) {
         password: ""}))
 
       event.preventDefault()
-
+      navigate('/homepage')
 
     }
 
@@ -154,13 +148,12 @@ export default function Login(props) {
       <div className="login-box">
       <h2>Login</h2>
       <form>
-        <div id='boxy'> </div>
         <div className="user-box">
           <input onChange={handleChange}
                  type="email" name="email"
                  text={loginForm.email}
                  value={loginForm.email} />
-          <label>Email</label>
+          <label>Username</label>
         </div>
         <div className="user-box">
           <input onChange={handleChange}
