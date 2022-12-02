@@ -4,13 +4,19 @@ from db__init import db
 from models import LanguageCodeName, PhraseCodeName, Phrases
 
 
+# uses googletrans==3.1.0a0
+# print(GT.LANGUAGES)
+# result = GT.translator.translate('MikÃ¤ on nimesi', src='fi', dest='fr')
+
 class Language:
+    # def __init__(self, myLanguage):
+    #     self.myLanguage = myLanguage
 
     def list_available_languages(self):
         res = LanguageCodeName.query.with_entities(LanguageCodeName.language_name)
         return [model[0] for model in res]
 
-    def list_available_phrases(self, language):
+    def list_available_phrases(self, language, user_id=None):
         my_phrases = {"english": [],
                       "translated": []
                       }

@@ -32,7 +32,7 @@ export default function LanguageHelpTab(props){
     ).then(
       data => {
         setData(data)
-        // console.log(data)
+        console.log(data)
       }
     )
   }, [])
@@ -60,7 +60,6 @@ export default function LanguageHelpTab(props){
     return (
 
       <div>
-
         <form action="#"  method="post">
         <FormControl sx={{ minWidth: 300}}>
           <InputLabel>Select A Language</InputLabel>
@@ -121,3 +120,127 @@ export default function LanguageHelpTab(props){
       )
     }
  }
+
+
+// import React, { useState, useEffect } from 'react'
+// //import { DataGrid } from '@mui/x-data-grid';
+// import {
+//   Select,
+//   MenuItem,
+//   FormControl,
+//   InputLabel,
+//   collapseClasses ,
+//   TableContainer,
+//   Table,
+//   TableHead,
+//   TableBody,
+//   TableRow,
+//   TableCell,
+//   Paper
+// } from "@mui/material"
+// import axios from "axios"
+
+
+// export default function LanguageHelpTab(props){
+//   const [data, setData] = useState([{}])
+//   const [value, setValue] = useState("")
+
+//   useEffect(() => {
+//     axios.get("/language_help", {
+//       methods': "GET",
+//       headers : {
+//         'Content-Type':'application/json'
+//       }
+//   }).then((response) => {
+//       if (response.status === 200) {
+//         console.log(response.data);
+//       }
+//     })
+//     .catch((e) => {
+//       console.log(e);
+//     });
+//   }, [])
+
+//   const send_data =(event)=>{
+//     event.preventDefault()
+//     setValue(event.target.value)
+//     let chosenLanguage=event.target.value
+//     axios
+//       .post("/language_help",
+//       {"chosenLanguage":chosenLanguage}
+//       )
+//       .then(data => {
+//         setData(data.data)
+//       }).catch(error => console.log(error));
+//     return value
+//   }
+
+//   if (typeof data.languages === 'undefined')
+//     return (<p>Loading...</p>)
+//   else if (typeof data.english === 'undefined'){
+//     return (
+//       <div>
+//         <form action="#"  method="post">
+
+//         <FormControl style={{minWidth: "40vw", marginTop: "25vh", marginLeft: "25vw"}}>
+//           <InputLabel>Select A Language</InputLabel>
+//           <Select onChange={send_data}>
+//           { data.languages.map( (member) => (
+//               <MenuItem value={member}>{member}</MenuItem>
+//             )
+//           )
+//           }
+//           </Select>
+//         </FormControl>
+//         </form>
+//       </div>
+//     )
+//   } else {
+//       let tableData = []
+//       for(let i=0; i<data.english.length; i++){
+//         tableData.push({
+//           english: data.english[i],
+//           translated: data.translated[i]
+//         })
+//       };console.log(tableData)
+//       return (
+
+//         <div>
+
+//           <form action="#"  method="post">
+
+//           <FormControl style={{minWidth: "40vw", marginTop: "25vh", marginLeft: "25vw"}}>
+//             <InputLabel>Select A Language</InputLabel>
+//             <Select onChange={send_data}>
+//             { data.languages.map( (member) => (
+//                 <MenuItem value={member}>{member}</MenuItem>
+//               )
+//             )
+//             }
+//             </Select>
+//           </FormControl>
+//           </form>
+
+//           <TableContainer component={Paper}>
+//             <TableHead>
+//               <TableCell>English</TableCell>
+//               <TableCell>Translated</TableCell>
+//             </TableHead>
+//             <TableBody>
+//               {
+//                 tableData.map( (row) => (
+//                   <TableRow
+//                   key={row.english}
+//                   sx={{'&:last-child td, &:last-child th': {border: 0}}}
+//                   >
+//                     <TableCell>{row.english}</TableCell>
+//                     <TableCell>{row.translated}</TableCell>
+//                   </TableRow>
+//                 ))
+//               }
+//             </TableBody>
+//           </TableContainer>
+//         </div>
+//       )
+//     }
+//  }

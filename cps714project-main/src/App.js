@@ -9,7 +9,8 @@ import './styles/App.css'
 import { ViewAgenda } from '@mui/icons-material'
 import ViewProfile from './pages/ViewProfile';
 import Restaurant from './pages/RestaurantRecommendation';
-import LanguagePage from './pages/LanguagePage';
+import LanguagePageCard from './pages/LanguagePage';
+import LanguageHelp from './pages/LanguageHelp';
 import Entertainment from './pages/Entertainment';
 import EventsRecommendation from './pages/EventsRecommendation'
 
@@ -28,7 +29,7 @@ function App() {
               <Route path="/restaurant"  element={<Restaurant />}></Route>
               <Route path="/entertainment"  element={<Entertainment />}></Route>
               <Route path="/events"  element={<EventsRecommendation />}></Route>
-              <Route path="/language_help"  element={<LanguagePage />}></Route>
+              <Route path="/language_help"  element={<LanguagePageCard />}></Route>
 
             </Routes>
       </div>
