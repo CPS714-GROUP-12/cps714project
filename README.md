@@ -13,7 +13,7 @@ Then, Change back into original directory:
 
 order does not matter:
 
-Int terminal:
+In terminal:
 
 To install node modules - frontend
 
